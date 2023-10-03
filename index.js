@@ -9,18 +9,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.get("/read", async (req, res) => {
-  const url = req.query.url;
-  if (!url) return res.status(400).send("url query is required");
+app.post("/read", async (req, res) => {
+  const url = req.body.url;
+  if (!url) return res.status(400).send("url field is required");
   const result = await readQrImageFromUrl(url);
   console.log("result: ", result);
   res.status(200).send(result);
   return;
 });
 
-app.get("/write", async (req, res) => {
-  const string = req.query.string;
-  if (!string) return res.status(400).send("string query is required");
+app.post("/write", async (req, res) => {
+  const string = req.body.string;
+  if (!string) return res.status(400).send("string field is required");
   const result = await writeQrImageThenUploadToExternalService(string);
   res.status(200).send(result);
   return;
