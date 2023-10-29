@@ -9,6 +9,30 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.status(200).send({
+    routes: [
+      {
+        method: "POST",
+        path: "/read",
+        required_request_body: {
+          url: "string",
+        },
+        description: "Read QR code from image url",
+      },
+      {
+        method: "POST",
+        path: "/write",
+        required_request_body: {
+          string: "string",
+        },
+        description: "Write QR code from string and give url of the image",
+      },
+    ],
+  });
+  return;
+});
+
 app.post("/read", async (req, res) => {
   const url = req.body.url;
   if (!url) return res.status(400).send("url field is required");
@@ -27,5 +51,7 @@ app.post("/write", async (req, res) => {
 });
 
 app.listen(5000, () => {
-  console.log("Server is running http://localhost:5000");
+  console.log("Server is running on port 5000");
 });
+
+module.exports = app;
