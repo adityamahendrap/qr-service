@@ -25,7 +25,7 @@ module.exports = async (string) => {
       console.log("QR code uploaded to ImgBB:", response.data.url);
       return response.data.url;
     } else {
-      console.error("Failed to upload QR code to ImgBB");
+      console.error("Failed to upload QR code to ImgBB", response);
     }
   } catch (error) {
     console.error("Error uploading QR code to ImgBB:", error.message);
