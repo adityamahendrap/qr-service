@@ -13,7 +13,7 @@ module.exports = async (string) => {
     formData.append("image", buffer, `${uuidv4()}.png`);
 
     let response = await fetch(
-      "https://api.imgbb.com/1/upload?key=0685f61798022a9b465b7a107ffc7ef9",
+      "https://api.imgbb.com/1/upload?key=f049bfaa3255f20fe0a48ea5f9f0cd4e",
       {
         method: "POST",
         body: formData,
